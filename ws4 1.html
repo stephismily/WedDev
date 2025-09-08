@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <style>
+            body {
+                background-color: #f2f2f2;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0px;
+            }
+            form {
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                width: 400px;
+            }
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            fieldset {
+                margin-bottom: 20px;
+                padding: 15px;
+                border-color: black;
+            }
+            legend {
+                font-weight: bold;
+            }
+            label {
+                display: block;
+                margin-top: 10px;
+            }
+            input[type="text"],
+            input[type="tel"],
+            input[type="email"] {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+            }
+            input[type="range"] {
+                width: 100%;
+                margin-top: 10px;
+            }
+            input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .footer {
+                background-color: gray;
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+                margin: 10px 0 0 0;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="">
+            <h2>Registration Form</h2>
+
+            <fieldset>
+                <legend>Name</legend>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required>
+
+                <label for="lname">Second Name:</label>
+                <input type="text" id="lname" name="lname" required>
+
+                <label for="college">College Name:</label>
+                <input type="text" id="college" name="college" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Details</legend>
+                <label for="phone">📞 Phone Number:</label>
+                <input type="tel" id="phone" name="phone" maxlength="10" required placeholder="10-digit number">
+
+                <label for="email">📧 Email:</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </fieldset>
+
+            <fieldset>
+                <legend>Analysis</legend>
+                <label for="social">📱 Involvement in Social Media:</label>
+                <input type="range" id="social" name="social" min="0" max="100">
+            </fieldset>
+
+            <div style="text-align:center;">
+                <input type="submit" value="Submit" onclick="window.alert('Your response taken.')">
+            </div>
+        </form>
+
+        <div class="footer">
+            <h3>© 2025 - Stephina Smily C. All Rights Reserved</h3>
+        </div>
+    </body>
+</html>
