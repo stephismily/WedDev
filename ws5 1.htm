@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
-  <meta charset="UTF-8">
   <title>World Map Positioning</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="Z:\WAD\Images\World_favicon.png">
 
   <style>
     .container {
@@ -32,42 +31,59 @@
       color: lightblue;
     }
 
+    body{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+
+    #footer{
+      background-color: gray; 
+      padding: 10px; 
+      text-align: center;
+      flex: 1;
+      margin: 20px 0 0 0;
+    }
+
     .asia {
-      top: 120px;
-      left: 520px;
+      top: 15%;
+      left: 65%;
     }
 
     .africa {
-      top: 200px;
-      left: 400px;
+      top: 40%;
+      left: 50%;
     }
 
     .europe {
-      top: 80px;
-      left: 450px;
+      top: 17%;
+      left: 50%;
     }
 
     .australia {
-      bottom: 50px;
-      right: 200px;
+      bottom: 32%;
+      right: 13%;
     }
 
     .india {
-      top: 150px;
-      left: 560px;
+      top: 34%;
+      left: 67%;
     }
   </style>
 </head>
-<body>
+<body style="height:100%; display: flex; flex-direction: column;">
   <h2 style="text-align:center;">World Map with Continents and India</h2>
 
   <div class="container">
-    <img src="https://i.pinimg.com/736x/91/37/e8/9137e89ab77c21dcba09ef19ea5b0358.jpg" alt="World Map">
+    <img src="Z:\WAD\Images\WorldMap.png" alt="World Map">
     <div class="label asia">Asia</div>
     <div class="label africa">Africa</div>
     <div class="label europe">Europe</div>
     <div class="label australia">Australia</div>
     <div class="label india">India</div>
+  </div>
+
+  <div id="footer">
+    <h3>© 2025 - Stephina Smily C. All Rights Reserved</h3>
   </div>
 </body>
 </html>
