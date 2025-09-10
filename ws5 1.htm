@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>World Map Positioning</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    .container {
+      position: relative;
+      width: 70%;
+      margin: auto;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .label {
+      position: absolute;
+      color: red;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .label::first-letter {
+      color: green;
+    }
+
+    .label:hover {
+      color: lightblue;
+    }
+
+    .asia {
+      top: 120px;
+      left: 520px;
+    }
+
+    .africa {
+      top: 200px;
+      left: 400px;
+    }
+
+    .europe {
+      top: 80px;
+      left: 450px;
+    }
+
+    .australia {
+      bottom: 50px;
+      right: 200px;
+    }
+
+    .india {
+      top: 150px;
+      left: 560px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">World Map with Continents and India</h2>
+
+  <div class="container">
+    <img src="https://i.pinimg.com/736x/91/37/e8/9137e89ab77c21dcba09ef19ea5b0358.jpg" alt="World Map">
+    <div class="label asia">Asia</div>
+    <div class="label africa">Africa</div>
+    <div class="label europe">Europe</div>
+    <div class="label australia">Australia</div>
+    <div class="label india">India</div>
+  </div>
+</body>
+</html>
