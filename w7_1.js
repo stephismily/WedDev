@@ -75,7 +75,7 @@ while (true) {
         }
 
         case 7: {
-            console.log("Exiting");
+            console.log("Exiting...");
             process.exit(0);
         }
 
