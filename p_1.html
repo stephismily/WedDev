@@ -2,6 +2,57 @@
     <head>
         <title>Operations</title>
     </head>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            height: 100%;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            padding: 10px;
+            background-color: white;
+        }
+        fieldset{
+            border: 1px solid black;
+            width: 300px;
+        }
+        legend{
+            background-color: black;
+            color: white;
+            padding: 3px;
+            margin-bottom: 4px ;
+            border-radius: 3px;
+            width: 150px;
+            text-align: center;
+        }
+        .result{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+        }
+        #cl{
+            color: white; 
+            background-color: green; 
+            border-radius: 3px;
+        }
+        .footer {
+                background-color: gray;
+                padding: 20px;
+                text-align: center;
+                width: 100%;
+                margin: 10px 0 0 0;
+        }
+    </style>
     <script>
         function sum(){
             const n1 = parseInt(document.getElementById("n1").value);
@@ -37,23 +88,38 @@
     <body>
         <form>
             <h2>Mathematical Operations</h2>
-            <label for="n1">Number 1:</label>
-            <input type="number" id="n1" name="n1" required>
+            <fieldset>
+                <legend>Enter two numbers</legend>
+                <div>
+                    <label for="n1">Number 1:</label>
+                    <input type="text" id="n1" name="n1" pattern="^[0-9]+$" required>
+                </div>
+                <br><br>
+                <div>
+                    <label for="n2">Number 2:</label>
+                    <input type="text" id="n2" name="n2" pattern="^[0-9]+$" required>
+                </div>
+            </fieldset>
             <br><br>
-            <label for="n2">Number 2:</label>
-            <input type="number" id="n2" name="n2" required>
+            <fieldset>
+                <legend>Choose an operation</legend>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <button type="button" onclick="sum()">+</button>
+                    <button type="button" onclick="sub()">-</button>
+                    <button type="button" onclick="mul()">*</button>
+                    <button type="button" onclick="div()">/</button>
+                    <button type="button" onclick="mod()">%</button>
+                </div>
+            </fieldset>
             <br><br>
-            <div style="align-items: center;">
-                <button type="button" onclick="sum()">+</button>
-                <button type="button" onclick="sub()">-</button>
-                <button type="button" onclick="mul()">*</button>
-                <button type="button" onclick="div()">/</button>
-                <button type="button" onclick="mod()">%</button>
+            <div class="result">
+                <label for="res">Result</label>
+                <input type="number" id="res" readonly>
+                 <button type="reset" id="cl">Clear</button>
             </div>
-            <br><br>
-            <label for="res">Result</label>
-            <input type="number" id="res" readonly>
-            <button type="reset">Clear</button>
         </form>
+        <div class="footer">
+            &copy; 25MX125 - All Rights Reserved
+        </div>
     </body>
 </html>
