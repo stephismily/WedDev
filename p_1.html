@@ -1,125 +1,161 @@
-<html>
+<html style="height: 100%; margin: 0;">
     <head>
         <title>Operations</title>
-    </head>
-    <style>
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: antiquewhite;
-            height: 100%;
-        }
-        form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 400px;
-            padding: 10px;
-            background-color: white;
-        }
-        fieldset{
-            border: 1px solid black;
-            width: 300px;
-        }
-        legend{
-            background-color: black;
-            color: white;
-            padding: 3px;
-            margin-bottom: 4px ;
-            border-radius: 3px;
-            width: 150px;
-            text-align: center;
-        }
-        .result{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-        }
-        #cl{
-            color: white; 
-            background-color: green; 
-            border-radius: 3px;
-        }
-        .footer {
-                background-color: gray;
+        <link rel="icon" type="image/x-icon" href="calc.png">
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    rgb(178, 209, 221),
+                    rgb(154, 195, 209),
+                    rgb(109, 139, 150),
+                    rgb(210, 228, 235)
+                );
+                box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.2),
+                            inset 0 0 200px rgba(255, 255, 255, 0.1);
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 400px;
                 padding: 20px;
+                background-color: white;
+                flex: 1;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                            0 0 40px rgba(140, 170, 190, 0.5);
+            }
+            #head{
+                width: 300px;
+                border: 1px solid black;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            fieldset{
+                border: 1px solid black;
+                width: 300px;
+            }
+            legend{
+                background-color: black;
+                color: white;
+                padding: 3px;
+                margin-bottom: 4px;
+                border-radius: 3px;
+                width: 150px;
+                text-align: center;
+            }
+            .result{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 20px;
+            }
+            #cl{
+                color: white; 
+                background-color: red; 
+                border-radius: 3px;
+            }
+            button{
+                background-color: green;
+                color: white;
+                border-radius: 3px;
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: yellow;
+                color: black;
+            }
+            .footer {
+                background-color: rgb(112, 177, 202);
+                padding: 10px;
                 text-align: center;
                 width: 100%;
                 margin: 10px 0 0 0;
-        }
-    </style>
-    <script>
-        function sum(){
-            const n1 = parseInt(document.getElementById("n1").value);
-            const n2 = parseInt(document.getElementById("n2").value);
-            const res = n1 + n2;
-            document.getElementById("res").value = res;
-        }
-        function sub(){
-            const n1 = parseInt(document.getElementById("n1").value);
-            const n2 = parseInt(document.getElementById("n2").value);
-            const res = n1 - n2;
-            document.getElementById("res").value = res;
-        }
-        function mul(){
-            const n1 = parseInt(document.getElementById("n1").value);
-            const n2 = parseInt(document.getElementById("n2").value);
-            const res = n1 * n2;
-            document.getElementById("res").value = res;
-        }
-        function div(){
-            const n1 = parseInt(document.getElementById("n1").value);
-            const n2 = parseInt(document.getElementById("n2").value);
-            const res = n1 / n2;
-            document.getElementById("res").value = res;
-        }
-        function mod(){
-            const n1 = parseInt(document.getElementById("n1").value);
-            const n2 = parseInt(document.getElementById("n2").value);
-            const res = n1 % n2;
-            document.getElementById("res").value = res;
-        }
-    </script>
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            }
+        </style>
+    </head>
     <body>
         <form>
-            <h2>Mathematical Operations</h2>
+            <fieldset id="head">
+                <h2>Mathematical Operations</h2>
+            </fieldset>
             <fieldset>
-                <legend>Enter two numbers</legend>
-                <div>
-                    <label for="n1">Number 1:</label>
-                    <input type="text" id="n1" name="n1" pattern="^[0-9]+$" required>
-                </div>
-                <br><br>
-                <div>
-                    <label for="n2">Number 2:</label>
-                    <input type="text" id="n2" name="n2" pattern="^[0-9]+$" required>
+                <legend>Choose an operation</legend>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <button type="button" onclick="setOperation('sum')">+</button>
+                    <button type="button" onclick="setOperation('sub')">-</button>
+                    <button type="button" onclick="setOperation('mul')">*</button>
+                    <button type="button" onclick="setOperation('div')">/</button>
+                    <button type="button" onclick="setOperation('mod')">%</button>
                 </div>
             </fieldset>
             <br><br>
             <fieldset>
-                <legend>Choose an operation</legend>
-                <div style="display: flex; justify-content: center; gap: 10px;">
-                    <button type="button" onclick="sum()">+</button>
-                    <button type="button" onclick="sub()">-</button>
-                    <button type="button" onclick="mul()">*</button>
-                    <button type="button" onclick="div()">/</button>
-                    <button type="button" onclick="mod()">%</button>
+                <legend>Enter two numbers</legend>
+                <div>
+                    <label for="n1">Number 1:</label>
+                    <input type="text" id="n1" name="n1" pattern="^[0-9]+$" required oninput="this.reportValidity()">
+                </div>
+                <br><br>
+                <div>
+                    <label for="n2">Number 2:</label>
+                    <input type="text" id="n2" name="n2" pattern="^[0-9]+$" required oninput="this.reportValidity()">
                 </div>
             </fieldset>
             <br><br>
             <div class="result">
                 <label for="res">Result</label>
                 <input type="number" id="res" readonly>
-                 <button type="reset" id="cl">Clear</button>
+                <button type="reset" id="cl">Clear</button>
             </div>
         </form>
         <div class="footer">
-            &copy; 25MX125 - All Rights Reserved
+            <h3>&copy; 25MX125 - All Rights Reserved</h3>
         </div>
+        <script>
+            let currentOp = null;
+
+            function setOperation(op) {
+                currentOp = op;
+                calculate();
+            }
+
+            function calculate() {
+                const n1 = parseInt(document.getElementById("n1").value);
+                const n2 = parseInt(document.getElementById("n2").value);
+                if (isNaN(n1) || isNaN(n2) || !currentOp) {
+                    document.getElementById("res").value = "";
+                    return;
+                }
+                let res;
+                switch (currentOp) {
+                    case "sum": res = n1 + n2; break;
+                    case "sub": res = n1 - n2; break;
+                    case "mul": res = n1 * n2; break;
+                    case "div": res = n1 / n2; break;
+                    case "mod": res = n1 % n2; break;
+                }
+                document.getElementById("res").value = res;
+            }
+
+            window.onload = function() {
+                document.getElementById("n1").addEventListener("input", calculate);
+                document.getElementById("n2").addEventListener("input", calculate);
+                document.getElementById("cl").addEventListener("click", function() {
+                    currentOp = null;
+                    document.getElementById("res").value = "";
+                });
+            };
+        </script>
     </body>
 </html>
