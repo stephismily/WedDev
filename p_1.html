@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Operations</title>
+    </head>
+    <script>
+        function sum(){
+            const n1 = parseInt(document.getElementById("n1").value);
+            const n2 = parseInt(document.getElementById("n2").value);
+            const res = n1 + n2;
+            document.getElementById("res").value = res;
+        }
+        function sub(){
+            const n1 = parseInt(document.getElementById("n1").value);
+            const n2 = parseInt(document.getElementById("n2").value);
+            const res = n1 - n2;
+            document.getElementById("res").value = res;
+        }
+        function mul(){
+            const n1 = parseInt(document.getElementById("n1").value);
+            const n2 = parseInt(document.getElementById("n2").value);
+            const res = n1 * n2;
+            document.getElementById("res").value = res;
+        }
+        function div(){
+            const n1 = parseInt(document.getElementById("n1").value);
+            const n2 = parseInt(document.getElementById("n2").value);
+            const res = n1 / n2;
+            document.getElementById("res").value = res;
+        }
+        function mod(){
+            const n1 = parseInt(document.getElementById("n1").value);
+            const n2 = parseInt(document.getElementById("n2").value);
+            const res = n1 % n2;
+            document.getElementById("res").value = res;
+        }
+    </script>
+    <body>
+        <form>
+            <h2>Mathematical Operations</h2>
+            <label for="n1">Number 1:</label>
+            <input type="number" id="n1" name="n1" required>
+            <br><br>
+            <label for="n2">Number 2:</label>
+            <input type="number" id="n2" name="n2" required>
+            <br><br>
+            <div style="align-items: center;">
+                <button type="button" onclick="sum()">+</button>
+                <button type="button" onclick="sub()">-</button>
+                <button type="button" onclick="mul()">*</button>
+                <button type="button" onclick="div()">/</button>
+                <button type="button" onclick="mod()">%</button>
+            </div>
+            <br><br>
+            <label for="res">Result</label>
+            <input type="number" id="res" readonly>
+            <button type="reset">Clear</button>
+        </form>
+    </body>
+</html>
