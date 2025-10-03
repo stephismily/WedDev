@@ -1,6 +1,8 @@
 function runCode(){
     let paras = document.querySelectorAll('p');
-    paras.forEach((para)=> {
-        para.style.fontSize = '2 px';
-    })
+    paras.forEach((p)=> {
+        let currentSize = window.getComputedStyle(p).fontSize;
+        let newSize = parseInt(currentSize) + 2 + 'px';
+        p.style.fontSize = newSize;
+    });
 }
