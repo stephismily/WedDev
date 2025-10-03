@@ -35,6 +35,12 @@
 
         <script>
             let currentScript = null;
+            let originalHTML = document.body.innerHTML;
+            
+            function resetPage() {
+                document.body.innerHTML = originalHTML;
+            }
+
             
             function loadScript(src){
                 if (currentScript) {
@@ -45,6 +51,8 @@
                 if (window.runCode){
                     delete window.runCode;
                 }
+
+                resetPage();
 
                 let script = document.createElement('script');
                 script.src = src;
