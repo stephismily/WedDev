@@ -17,13 +17,45 @@
             <li class="item">Cherry</li>
         </ul>
 
-
-        <button onclick="runCode()">Run</button>
         <div>
             Output: <input readonly type="text" id="output">
         </div>
 
+        <div>
+            <button onclick="loadScript('ws_8_A.js')">Part A</button>
+            <button onclick="loadScript('ws_8_B.js')">Part B</button>
+            <button onclick="loadScript('ws_8_C.js')">Part C</button>
+            <button onclick="loadScript('ws_8_D.js')">Part D</button>
+            <button onclick="loadScript('ws_8_E.js')">Part E</button>
+            <button onclick="loadScript('ws_8_F.js')">Part F</button>
+        </div>
 
-        <script src="ws_8_A.js"></script>   
+        <script>
+            let currentScript = null;
+            
+            function loadScript(src){
+                if (currentScript) {
+                    currentScript.remove();
+                    currentScript = null;
+                }
+
+                if (window.runCode){
+                    delete window.runCode;
+                }
+
+                let script = document.createElement('script');
+                script.src = src;
+                script.id = 'dynamicScript';
+                document.body.appendChild(script);
+                currentScript = script;
+
+                script.onload = () => {
+                    if (typeof runCode === "function"){
+                        runCode();
+                    }
+                }
+            }
+        </script>   
+
     </body>    
   </html>
