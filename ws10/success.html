@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.onload = function() {
+      document.getElementById("successMsg").textContent = "Form Submitted Successfully!";
+      document.getElementById("successMsg").style.color = "green";
+
+      const name = sessionStorage.getItem("name");
+      const email = sessionStorage.getItem("email");
+      const rating = sessionStorage.getItem("rating");
+      const interests = sessionStorage.getItem("interests");
+
+      alert(`Name: ${name}\nEmail: ${email}\nRating: ${rating}\nInterests: ${interests}`);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2 id="successMsg"></h2>
+  </div>
+</body>
+</html>

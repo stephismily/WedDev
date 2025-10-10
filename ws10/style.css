@@ -35,11 +35,11 @@ input[type="date"] {
   margin-top: 6px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  outline: none;
   transition: 0.3s;
 }
 
 input:focus {
+  outline: none;
   border-color: #2a6f97;
 }
 
