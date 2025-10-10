@@ -4,7 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .container {
@@ -74,4 +74,11 @@ button {
 
 button:hover {
   background-color: #014f86;
+}
+
+.footer{
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    color: #2a6f97;
 }
