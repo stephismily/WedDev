@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <title>Personal Expense History - Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="centered-card">
+    <h1>Welcome to Personal Expense History</h1>
+    <p class="lead">
+      Track your personal expenses locally on your machine. This single-user
+      application stores your user details and expense history in your browser's
+      <strong>localStorage</strong> so your data persists even after closing the window.
+    </p>
+
+    <ol class="features">
+      <li>Save & edit your user details (name, role, email).</li>
+      <li>Add expenses (amount, category, date) — validated and stored locally.</li>
+      <li>View a summary of all expenses and total spent.</li>
+      <li>Exit the app (will attempt to close window; data is preserved).</li>
+    </ol>
+
+    <div class="actions">
+      <a class="btn" href="user.html">Go to User Details</a>
+      <a class="btn" href="addExpense.html">Add Expense</a>
+      <a class="btn" href="summary.html">View Summary</a>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+  <title>User Details - Personal Expense History</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="centered-card">
+    <h2>User Details</h2>
+
+    <div id="userDisplay" class="card-section" style="display:none;">
+      <p><strong>Name:</strong> <span id="displayName"></span></p>
+      <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+      <p><strong>Role:</strong> <span id="displayRole"></span></p>
+      <div class="actions">
+        <button id="editBtn" class="btn">Edit</button>
+      </div>
+    </div>
+
+    <form id="userForm" novalidate>
+      <label>
+        Full Name
+        <input id="userName" name="userName" required
+               pattern="^[A-Za-z0-9]+(?:[ ]+[A-Za-z0-9]+){0,2}$"
+               title="Enter 1 to 3 words (letters/numbers allowed).">
+      </label>
+
+      <label>
+        Email
+        <input id="userEmail" name="userEmail" required
+               pattern="^[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*@[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)+$"
+               title="Format like xxx.yz@domain.co.in (letters/numbers, dot allowed).">
+      </label>
+
+      <label>
+        Role
+        <select id="userRole" name="userRole" required>
+          <option value="">-- Select Role --</option>
+          <option>Student</option>
+          <option>Worker</option>
+          <option>Staff</option>
+          <option>Employer</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button id="submitUser" class="btn" type="submit" disabled>Submit</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    
+    (function () {
+      const userForm = document.getElementById('userForm');
+      const submitBtn = document.getElementById('submitUser');
+      const userName = document.getElementById('userName');
+      const userEmail = document.getElementById('userEmail');
+      const userRole = document.getElementById('userRole');
+
+      const userDisplay = document.getElementById('userDisplay');
+      const displayName = document.getElementById('displayName');
+      const displayEmail = document.getElementById('displayEmail');
+      const displayRole = document.getElementById('displayRole');
+      const editBtn = document.getElementById('editBtn');
+
+      function refreshUserUI() {
+        const user = appStorage.getUser();
+        if (user) {
+          userForm.style.display = 'none';
+          userDisplay.style.display = 'block';
+          displayName.textContent = user.name;
+          displayEmail.textContent = user.email;
+          displayRole.textContent = user.role;
+          appUI.updateUserInNavbar(user.name);
+        } else {
+          userForm.style.display = 'block';
+          userDisplay.style.display = 'none';
+        }
+      }
+
+      // Validate inputs and toggle submit
+      function checkValid() {
+        const valid = userName.checkValidity() && userEmail.checkValidity() && userRole.checkValidity();
+        submitBtn.disabled = !valid;
+      }
+
+      // Pre-fill if editing
+      editBtn.addEventListener('click', () => {
+        const user = appStorage.getUser();
+        if (!user) return;
+        userForm.style.display = 'block';
+        userDisplay.style.display = 'none';
+        userName.value = user.name;
+        userEmail.value = user.email;
+        userRole.value = user.role;
+        checkValid();
+      });
+
+      [userName, userEmail, userRole].forEach(el => el.addEventListener('input', checkValid));
+
+      userForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const user = {
+          name: userName.value.trim(),
+          email: userEmail.value.trim(),
+          role: userRole.value
+        };
+        appStorage.saveUser(user);
+        appUI.showToast('User details saved.');
+        refreshUserUI();
+      });
+
+      // init
+      refreshUserUI();
+      checkValid();
+    })();
+  </script>
+</body>
+</html>

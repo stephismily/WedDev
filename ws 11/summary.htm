@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <title>Summary - Personal Expense History</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="centered-card">
+    <h2>Expense Summary</h2>
+
+    <section class="card-section">
+      <h3>User Details</h3>
+      <div id="userBlock">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <section class="card-section">
+      <h3>Expenses</h3>
+      <div id="expensesList">
+        <!-- Filled by JS -->
+      </div>
+      <p id="totalSum" class="total-sum"></p>
+    </section>
+
+    <div class="actions">
+      <button id="closeSummary" class="btn">Close (Go Home)</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const userBlock = document.getElementById('userBlock');
+      const expensesList = document.getElementById('expensesList');
+      const totalSum = document.getElementById('totalSum');
+      const closeSummary = document.getElementById('closeSummary');
+
+      function render() {
+        const user = appStorage.getUser();
+        const expenses = appStorage.getExpenses();
+
+        if (user) {
+          userBlock.innerHTML = `
+            <p><strong>Name:</strong> ${user.name}</p>
+            <p><strong>Email:</strong> ${user.email}</p>
+            <p><strong>Role:</strong> ${user.role}</p>
+          `;
+        } else {
+          userBlock.innerHTML = `<p>No user details found. <a href="user.html">Add user details</a>.</p>`;
+        }
+
+        if (!expenses || expenses.length === 0) {
+          expensesList.innerHTML = `<p>No expenses recorded yet. <a href="addExpense.html">Add an expense</a>.</p>`;
+          totalSum.textContent = '';
+          return;
+        }
+
+        // List expenses in a table
+        let html = `<table class="striped"><thead><tr><th>#</th><th>Date</th><th>Category</th><th>Amount</th></tr></thead><tbody>`;
+        let sum = 0;
+        expenses.forEach((exp, idx) => {
+          html += `<tr>
+                    <td>${idx+1}</td>
+                    <td>${exp.date}</td>
+                    <td>${exp.category}</td>
+                    <td>${exp.amount}</td>
+                   </tr>`;
+          sum += parseFloat(exp.amount);
+        });
+        html += `</tbody></table>`;
+        expensesList.innerHTML = html;
+        totalSum.textContent = `Total Expenses: ₹ ${sum.toFixed(2)}`;
+      }
+
+      closeSummary.addEventListener('click', () => {
+        location.href = 'index.html';
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

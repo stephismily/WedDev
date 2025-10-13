@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <title>Add Expense - Personal Expense History</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="centered-card">
+    <h2>Add Expense</h2>
+
+    <form id="expenseForm" novalidate>
+      <label>
+        Amount (nnn.nn)
+        <input id="amount" name="amount" required
+               pattern="^\d+(\.\d{2})?$"
+               placeholder="e.g. 125.00"
+               title="Number with up to 2 decimals, e.g. 125.50" />
+      </label>
+
+      <label>
+        Category
+        <select id="category" name="category" required>
+          <option value="">-- Select Category --</option>
+          <option>Food</option>
+          <option>Stationary</option>
+          <option>Entertainment</option>
+          <option>Travel</option>
+          <option>Utilities</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>
+        Date
+        <input id="expDate" name="expDate" type="date" required />
+      </label>
+
+      <div class="actions">
+        <button id="saveExpense" class="btn" type="submit" disabled>Save</button>
+        <button id="addAnother" class="btn" type="button" disabled>Add Another</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const amount = document.getElementById('amount');
+      const category = document.getElementById('category');
+      const expDate = document.getElementById('expDate');
+      const saveBtn = document.getElementById('saveExpense');
+      const addAnotherBtn = document.getElementById('addAnother');
+      const form = document.getElementById('expenseForm');
+
+      // Date constraints: min = 2024-10-01, max = today
+      const minDate = new Date(2024, 9, 1); // month index 9 -> October
+      const today = new Date();
+      function toIsoDateString(d) {
+        const y = d.getFullYear();
+        const m = (d.getMonth()+1).toString().padStart(2,'0');
+        const day = d.getDate().toString().padStart(2,'0');
+        return `${y}-${m}-${day}`;
+      }
+      expDate.min = toIsoDateString(minDate);
+      expDate.max = toIsoDateString(today);
+
+      function checkValid() {
+        const valid = amount.checkValidity() && category.checkValidity() && expDate.checkValidity();
+        saveBtn.disabled = !valid;
+        addAnotherBtn.disabled = !valid;
+      }
+
+      [amount, category, expDate].forEach(el => el.addEventListener('input', checkValid));
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const expense = {
+          amount: parseFloat(amount.value).toFixed(2),
+          category: category.value,
+          date: expDate.value
+        };
+
+        appStorage.addExpense(expense);
+        appUI.showToast('Expense saved.');
+
+        // After save, keep the data visible and allow Add Another or go to summary
+        addAnotherBtn.disabled = false;
+        // Optionally: clear amount & category but keep date
+        amount.value = '';
+        category.value = '';
+        checkValid();
+      });
+
+      addAnotherBtn.addEventListener('click', () => {
+        amount.value = '';
+        category.value = '';
+        expDate.value = toIsoDateString(today); // default to today for convenience
+        checkValid();
+        appUI.showToast('Ready for another expense.');
+      });
+
+      // Set default date to today
+      expDate.value = toIsoDateString(today);
+      checkValid();
+    })();
+  </script>
+</body>
+</html>
