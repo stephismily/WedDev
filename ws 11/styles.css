@@ -3,7 +3,6 @@
   --card-width: 720px;
   --accent: #2a7ae2;
   --muted: #f4f6fb;
-  --glass: rgba(255,255,255,0.85);
   --btn-radius: 12px;
   --btn-padding: 10px 18px;
   --shadow: 0 6px 18px rgba(20,30,60,0.12);
@@ -14,7 +13,7 @@
 html,body{
     height:100%; 
     margin:0; 
-    font-family:var(--font-sans); color:#123
+    font-family:var(--font-sans); color:#123;
 }
 
 body{

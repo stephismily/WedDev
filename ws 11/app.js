@@ -36,9 +36,9 @@ const appUI = (function () {
           <div class="brand">Expense History</div>
           <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="user.html">UserDetail</a>
-            <a href="addExpense.html">ExpenseMade</a>
-            <a href="summary.html">Summary</a>
+            <a href="user.htm">UserDetail</a>
+            <a href="addExpense.htm">ExpenseMade</a>
+            <a href="summary.htm">Summary</a>
             <a href="#" id="exitApp">Exit</a>
           </div>
         </div>
