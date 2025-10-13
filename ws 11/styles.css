@@ -11,7 +11,12 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family:var(--font-sans); color:#123}
+html,body{
+    height:100%; 
+    margin:0; 
+    font-family:var(--font-sans); color:#123
+}
+
 body{
   background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1800&q=60');
   background-size:cover;
