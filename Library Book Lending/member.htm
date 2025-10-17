@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <title>Member Details</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <div id="navbar"></div>
+
+        <main class="centered-card">
+            <form id="memberForm" novalidate>
+                <label>
+                    Name:
+                    <input type="text" required pattern="^[A-Za-z]+(?:[ ][A-Za-z]+){0,2}$"
+                           name="memberName" id="memberName" placeholder="Enter your name">
+                </label>
+
+                <label>
+                    Aadhaar:
+                    <input id="aadhaar" name="aadhaar" required
+                           pattern="^[0-9]{12}$" placeholder="Enter your 12-digit aadhaar number">
+                </label>
+
+                <label>
+                    Age:
+                    <input id="memberAge" name="memberAge" required
+                           min="16" placeholder="Enter your age">
+                </label>
+
+                <label>
+                    Member ID:
+                    <input id="memberID" name="memberID" required
+                        pattern="^[A-Z]{2}[0-9]{4}$" placeholder="Eg. AS1234">
+                </label>
+
+                <div class="actions">
+                    <button type="submit" id="submitBtn" class="btn" disabled>Submit</button>
+                </div>
+            </form>
+
+            <div id="memberDisplay" class="displaySection" style="display: none">
+                <strong>Name:</strong><span id="displayName"></span>
+                <strong>Aadhaar:</strong><span id="displayAadhaar"></span>
+                <strong>Age:</strong><span id="displayAge"></span>
+                <strong>Member ID:</strong><span id="displayID"></span>
+                <div class="actions">
+                    <button type="button" class="btn" id="editBtn">Edit</button>
+                </div>
+            </div>
+        </main>
+
+        <script src="app.js"></script>
+        <script>
+            (function (){
+                const memberName = document.getElementById("memberName");
+                const aadhaar = document.getElementById("aadhaar");
+                const memberAge = document.getElementById("memberAge");
+                const memberID = document.getElementById("memberID");
+                const memberForm = document.getElementById("memberForm");
+
+                const memberDisplay = document.getElementById("memberDisplay");
+                const displayName = document.getElementById("displayName");
+                const displayAadhaar = document.getElementById("displayAadhaar");
+                const displayAge = document.getElementById("displayAge");
+                const displayID = document.getElementById("displayID");
+
+                const submitBtn = document.getElementById("submitBtn");
+                const editBtn = document.getElementById("editBtn");
+
+                function refreshUI() {
+                    const member = appStorage.getMember();
+
+                    if(user){
+                        memberForm.style.display = 'none';
+                        memberDisplay.style.display = 'block';
+                        displayName.textContent = user.name;
+                        displayAadhaar.textContent = user.aadhaar;
+                        displayAge.textContent = user.age;
+                        displayID.textContent = user.ID;
+                        appUI.updateInNavbar(user);
+                    }else{
+                        memberForm.style.display = 'block';
+                        memberDisplay.style.display = 'none';
+                    }
+                }
+
+                function checkValid() {
+                    const valid = memberName.checkValidity() && memberAadhaar.checkValidity() && memberAge.checkValidity() && memberID.checkValidity();
+                    submitBtn.disable = !valid;
+                }
+
+                memberForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const user = {
+                        name: memberName.value.trim(),
+                        aadhaar: aadhaar.value.trim(),
+                        age: memberAge.value,
+                        ID: memberID.value.trim()
+                    }
+                    appStorage.saveMember(user);
+                    appUI.showToast('User details saved!');
+                    refreshUI();
+                });
+
+                editBtn.addEventListener('click', () => {
+                    const user = appStorage.getMember();
+                    if (user){
+                        memberDisplay.style.display = 'none';
+                        memberForm.style.display = 'block';
+                        memberName.value = user.name;
+                        aadhaar.value = user.aadhaar;
+                        memberAge.value = user.age;
+                        memberId.value = user.ID;
+                        checkValid();
+                    }
+
+                    [memberName, memberAadhaar, memberAge, memberID].forEach('input', checkValid);
+                });
+
+                checkValid();
+                refreshUI();
+            })();
+        </script>
+    </body>
+</html>
