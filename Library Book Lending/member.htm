@@ -77,7 +77,7 @@
                         displayAadhaar.textContent = user.aadhaar;
                         displayAge.textContent = user.age;
                         displayID.textContent = user.ID;
-                        appUI.updateInNavbar(user);
+                        appUI.updateInNavbar(user.name);
                     }else{
                         memberForm.style.display = 'block';
                         memberDisplay.style.display = 'none';
@@ -117,6 +117,7 @@
 
                 [memberName, memberAadhaar, memberAge, memberID].forEach(el => el.addEventListener('input',checkValid));
 
+                appUI.injectNavbar();
                 checkValid();
                 refreshUI();
             })();
