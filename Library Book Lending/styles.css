@@ -104,6 +104,16 @@ form select {
     color: #2B144D;
 }
 
+#memberAge, #accNum{
+    width: 100%;                  
+    padding: 10px 12px;           
+    font-size: 1rem;               
+    border: 1px solid #D8C6F0;    
+    border-radius: 10px;
+    background: white;
+    color: #2B144D;
+} 
+
 .btn {
     display: inline-block;
     text-decoration: none;
