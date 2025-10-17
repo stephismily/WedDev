@@ -39,10 +39,24 @@
             </form>
 
             <div id="memberDisplay" class="displaySection" style="display: none">
-                <strong>Name:</strong><span id="displayName"></span>
-                <strong>Aadhaar:</strong><span id="displayAadhaar"></span>
-                <strong>Age:</strong><span id="displayAge"></span>
-                <strong>Member ID:</strong><span id="displayID"></span>
+                <h2>Member Added!</h2>
+                <table class="striped">
+                    <thead>
+                        <th><strong>Name</strong></th>
+                        <th><strong>Aadhaar</strong></th>
+                        <th><strong>Age</strong></th>
+                        <th><strong>Member ID</strong></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="displayName"></td>
+                            <td id="displayAadhaar"></td>
+                            <td id="displayAge"></td>
+                            <td id="displayID"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <div class="actions">
                     <button type="button" class="btn" id="editBtn">Edit</button>
                 </div>
