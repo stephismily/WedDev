@@ -154,6 +154,11 @@ table.striped th, table.striped td {
     text-align: left;
 }
 
+.lead{
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
 @media (max-width: 520px) {
     nav.navbar {
         flex-direction: column;
