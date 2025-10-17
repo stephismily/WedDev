@@ -3,7 +3,7 @@ const appStorage = (function () {
     const bookKey = 'book';
 
     function getMember() {
-        try {JSON.parse(localStorage.getItem(memberKey)); } catch (e) { return null;}
+        try {return JSON.parse(localStorage.getItem(memberKey)); } catch (e) { return null;}
     }
 
     function saveMember(userObj) {
@@ -11,11 +11,11 @@ const appStorage = (function () {
     }
 
     function saveBook(arr) {
-        localStorage.setItem(bookKey, JSON.stringify(bk));
+        localStorage.setItem(bookKey, JSON.stringify(arr));
     }
 
     function getBook() {
-        try {JSON.parse(localStorage.getItem(bookKey)) || [] ;} catch(e) {return [];}
+        try {return JSON.parse(localStorage.getItem(bookKey)) || [] ;} catch(e) {return [];}
     }
 
     function addBook(bk){
