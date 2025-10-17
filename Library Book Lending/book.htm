@@ -23,6 +23,7 @@
                 <div class="actions">
                     <button id="saveBtn" class="btn" type="submit" disabled>Save</button>
                     <button id="addBtn" class="btn" type="button" disabled> Add Another</button>
+                    <button id="sumBtn" class="btn" type="button">View Summary</button>
                 </div>
             </form>
         </main>
@@ -36,6 +37,7 @@
                 
                 const saveBtn = document.getElementById("saveBtn");
                 const addBtn = document.getElementById("addBtn");
+                const sumBtn = document.getElementById("sumBtn");
 
                 const limDate = new Date();
                 function toIsoDateString(d) {
@@ -81,6 +83,10 @@
                     accNum.value = '';
                     checkValid();
                     appUI.showToast('You can add another book now.');
+                });
+
+                sumBtn.addEventListener('click', () => {
+                    location.href = "summary.htm";
                 });
 
                 date.value=toIsoDateString(limDate);

@@ -9,30 +9,38 @@
 
         <main class="centered-card">
             <form id="memberForm" novalidate>
-                <label>
-                    Name:
-                    <input type="text" required pattern="^[A-Za-z]+(?:[ ][A-Za-z]+){0,2}$"
-                           name="memberName" id="memberName" placeholder="Enter your name">
-                </label>
-
-                <label>
-                    Aadhaar:
-                    <input id="aadhaar" name="aadhaar" required
-                           pattern="^[0-9]{12}$" placeholder="Enter your 12-digit aadhaar number">
-                </label>
-
-                <label>
-                    Age:
-                    <input id="memberAge" name="memberAge" required
-                           min="16" placeholder="Enter your age">
-                </label>
-
-                <label>
-                    Member ID:
-                    <input id="memberID" name="memberID" required
-                        pattern="^[A-Z]{2}[0-9]{4}$" placeholder="Eg. AS1234">
-                </label>
-
+                <table class="striped">
+                    <tr>
+                        <td><label for="memberName">Name:</label></td>
+                        <td>
+                            <input type="text" id="memberName" name="memberName" required
+                                pattern="^[A-Za-z]+(?:[ ][A-Za-z]+){0,2}$"
+                                placeholder="Enter your name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="aadhaar">Aadhaar:</label></td>
+                        <td>
+                            <input type="text" id="aadhaar" name="aadhaar" required
+                                pattern="^[0-9]{12}$" placeholder="Enter your 12-digit aadhaar number">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="memberAge">Age:</label></td>
+                        <td>
+                            <input type="number" id="memberAge" name="memberAge" required min="16"
+                                placeholder="Enter your age">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="memberID">Member ID:</label></td>
+                        <td>
+                            <input type="text" id="memberID" name="memberID" required
+                                pattern="^[A-Z]{2}[0-9]{4}$" placeholder="Eg. AS1234">
+                        </td>
+                    </tr>
+                </table>
+              
                 <div class="actions">
                     <button type="submit" id="submitBtn" class="btn" disabled>Submit</button>
                 </div>
@@ -59,6 +67,7 @@
 
                 <div class="actions">
                     <button type="button" class="btn" id="editBtn">Edit</button>
+                    <button type="button" class="btn" id="lndBtn">Lend Book</button>
                 </div>
             </div>
         </main>
@@ -80,6 +89,7 @@
 
                 const submitBtn = document.getElementById("submitBtn");
                 const editBtn = document.getElementById("editBtn");
+                const lndBk = document.getElementById("lndBtn")
 
                 function refreshUI() {
                     const user = appStorage.getMember();
@@ -127,6 +137,10 @@
                         memberID.value = user.ID;
                         checkValid();
                     }
+                });
+
+                lndBk.addEventListener('click', () => {
+                    location.href = "book.htm";
                 });
 
                 [memberName, memberAadhaar, memberAge, memberID].forEach(el => el.addEventListener('input',checkValid));
