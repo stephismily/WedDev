@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Summary</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="navbar"></div>
+
+        <main class="centered-card">
+            <h1>Book Lending Summary</h1>
+
+            <section class="card-section">
+                <h3>Member Details</h3>
+                <div id="memDet"></div>
+            </section>
+
+            <section class="card-section">
+                <h3>Book Details</h3>
+                <div id="bookDet"></div>
+            </section>
+
+            <div class="actions">
+                <button id="closeBtn" class="btn">Close (Go Home)</button>
+            </div>
+        </main>
+
+        <script src="app.js"></script>
+        <script>
+            (function () {
+                const memDet = document.getElementById("memDet");
+                const bookDet = document.getElementById("bookDet");
+                const closeBtn = document.getElementById("closeBtn");
+
+                function render() {
+                    const member = appStorage.getMember();
+                    const books = appStorage.getBook();
+
+                    if (member) {
+                        memDet.innerHTML = `
+                            <p><strong>Name:</strong> ${member.name}</p>
+                            <p><strong>Aadhaar:</strong> ${member.aadhaar}</p>
+                            <p><strong>Age:</strong> ${member.age}</p>
+                            <p><strong>Member ID:</strong> ${member.ID}</p>
+                        `;
+                    }else{
+                        memDet.innerHTML = `<p>No member details found. <a href="member.htm">Add a member</a></p>`
+                    }
+
+                    if (!books || books.length === 0){
+                        bookDet.innerHTML = `<p>No books lended. <a href="book.htm">Lend a book.</a></p>`
+                        return;
+                    }
+
+                    let html = `<table class="striped">
+                                    <thead>
+                                        <th>S.No</th>
+                                        <th>Accession Number</th>
+                                        <th>Date</th>
+                                    </thead>
+                                    <tbody>
+                    `;
+                    books.forEach((bk,i) =>{
+                        html += `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td>${bk.acc}</td>
+                                <td>${bk.date}</td>
+                            </tr>
+                        `;
+                    });
+                    html += `</tbody></table>`;
+                    bookDet.innerHTML = html;
+                }
+
+                closeBtn.addEventListener('click', () => {
+                    location.href = 'index.htm';
+                });
+
+                render();
+            })();
+        </script>
+    </body>
+</html>
