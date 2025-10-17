@@ -48,9 +48,15 @@ const appUI = (function () {
                 </div>
             </nav>
         `;
+
+        const container = document.getElementById('navbar');
+        if (container) container.innerHTML = navbarHtml;
+
+        const user = appStorage.getMember();
+        if (user) updateInNavbar(user.name);
+
     }
-    const container = document.getElementById('navbar');
-    if (container) container.innerHTML = navbarHtml;
+    
 
     function updateInNavbar(name){
         const badge = document.getElementById("userBadge");
@@ -62,9 +68,6 @@ const appUI = (function () {
             badge.style.display = 'none';
         }
     }
-
-    const user = appStorage.getMember();
-    if (user) updateInNavbar(user.name);
 
     function showToast(msg){
         const t = document.createElement('div');

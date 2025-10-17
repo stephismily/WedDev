@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Lend Books</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="navbar"></div>
+        <main class="centered-card">
+            <h1>Book Details</h1>
+
+            <form id="bookForm" novalidate>
+                <label>
+                    Accession No.: 
+                    <input id="accNum" name="accNum" required
+                           pattern="^[0-9]{4,6}$" title="Accession number with 4-6 digits">
+                </label>
+
+                <label>
+                    Date:
+                    <input id="date" name="date" type="date" required>
+                </label>
+
+                <div class="actions">
+                    <button id="saveBtn" class="btn" type="submit" disabled>Save</button>
+                    <button id="addBtn" class="btn" type="button" disabled> Add Another</button>
+                </div>
+            </form>
+        </main>
+
+        <script src="app.js"></script>
+        <script>
+            (function () {
+                const bookForm = document.getElementById("bookForm");
+                const accNum = document.getElementById("accNum");
+                const date = document.getElementById("date");
+                
+                const saveBtn = document.getElementById("saveBtn");
+                const addBtn = document.getElementById("addBtn");
+
+                const limDate = new Date();
+                function toIsoDateString(d) {
+                    const y = d.getFullYear();
+                    const m = (d.getMonth()+1).toString().padStart(2,'0');
+                    const day = d.getDate().toString().padStart(2,'0');
+                    return `${y}-${m}-${day}`;
+                }
+                date.min = toIsoDateString(limDate);
+                date.max = toIsoDateString(limDate);
+
+                function checkValid(){
+                    const valid = date.checkValidity() && accNum.checkValidity();
+                    saveBtn.disabled = !valid;
+                    addBtn.disabled = !valid;
+                }
+
+                [accNum, date].forEach(e => e.addEventListener('input', checkValid));
+
+                bookForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const book = {
+                        acc: accNum.value,
+                        date: date.value
+                    };
+
+                    appStorage.addBook(book);
+                    appUI.showToast('Book added!');
+
+                    addBtn.disabled = false;
+                    accNum.value='';
+                    checkValid();
+                });
+
+                addBtn.addEventListener('click', () => {
+                    const book = {
+                        acc: accNum.value,
+                        date: date.value
+                    };
+
+                    appStorage.addBook(book);
+                    
+                    accNum.value = '';
+                    checkValid();
+                    appUI.showToast('You can add another book now.');
+                });
+
+                date.value=toIsoDateString(limDate);
+                checkValid();
+            })();
+        </script>
+    </body>
+</html>
