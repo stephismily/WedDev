@@ -90,3 +90,7 @@ const appUI = (function () {
         updateInNavbar, showToast, injectNavbar
     };
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+    appUI.injectNavbar();
+});
