@@ -17,5 +17,29 @@
                 <a class="btn" href="summary.htm">Display Summary</a>
             </div>
         </main>
+        <script src="app.js"></script>
+        <script>
+            (function () {
+                const entry = document.getElementById("entry");
+                const lead = document.getElementById("lead");
+                const user = appStorage.getMember();
+
+                if (user){
+                    entry.innerText = `Welcome ${user.name}!`;
+                    lead.innerHTML = `We’ve remembered you! Your member details are already stored safely in your browser using Local Storage, 
+                                      so you don’t have to re-enter them every time.You can still review or update your information whenever you wish, 
+                                      and continue adding new book lending records. Everything stays neatly organized and 
+                                      easily accessible — right where you left off. Explore your Book List, update your details if needed, 
+                                      or view your Summary to see all your lending activity in one place.`;
+                }else{
+                    entry.innerText = 'Welcome!';
+                    lead.innerHTML= `This website helps you manage your library activities with ease. You can record your member details, 
+                                     lend books, and view summaries — all in one simple interface. Your information is securely stored right in 
+                                     your browser using Local Storage, meaning your data stays private on your device and is instantly available 
+                                     whenever you return.<br><br>To get started, please enter your member details below. Once saved, you’ll be ready to 
+                                     record your book lending activities and access your lending summary anytime.`;
+                }
+            })();
+        </script>
     </body>
 </html>
