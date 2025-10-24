@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worksheet 12 - Array and Objects</title>
+<style>
+  body { font-family: Arial; background: #f9f9f9; margin: 20px; }
+  button { margin: 5px; padding: 8px 12px; cursor: pointer; border-radius: 6px; border: none; background: #007bff; color: white; }
+  button:hover { background: #0056b3; }
+  #output { margin-top: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px #ccc; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<h2>Worksheet 12 - JavaScript Array & Object Exercises</h2>
+
+<button onclick="createAndDisplayStudents()">1. Create & Display Student Records</button> <button onclick="calculateAverageMarks()">2. Calculate Average Marks</button> <button onclick="filterHighScorers()">3. Filter High Scorers</button> <button onclick="findTopper()">4. Find the Topper</button> <button onclick="addNewProperty()">5. Add New Property Dynamically</button> <button onclick="sortBooks()">6. Sorting Objects</button> <button onclick="productDiscount()">7. Class with Method</button> <button onclick="updateBookPrice()">8. Update Specific Object</button> <button onclick="removeLowestStudent()">9. Remove an Object</button> <button onclick="displayCars()">10. Custom Formatted Output</button> <button onclick="arrayFromStudents()">11. Use of Array.from()</button> <button onclick="indexAssignment()">12. Index Assignment (No Push)</button> <button onclick="challengeLibrary()">Challenge: Library Class</button>
+
+<div id="output">Output will appear here...</div>
+
+<script>
+// 1. Create and Display Student Records
+class Student {
+  constructor(name, age, marks) {
+    this.name = name;
+    this.age = age;
+    this.marks = marks;
+  }
+}
+
+function createAndDisplayStudents() {
+  const students = [
+    new Student("Alice", 20, 88),
+    new Student("Bob", 21, 92),
+    new Student("Charlie", 19, 79)
+  ];
+  let result = "Student Records:\n";
+  students.forEach(s => {
+    result += `Name: ${s.name}, Age: ${s.age}, Marks: ${s.marks}\n`;
+  });
+  document.getElementById("output").textContent = result;
+}
+
+// 2. Calculate Average Marks
+function calculateAverageMarks() {
+  const students = [
+    new Student("A", 20, 80),
+    new Student("B", 21, 90),
+    new Student("C", 22, 85),
+    new Student("D", 23, 95),
+    new Student("E", 19, 88)
+  ];
+  const total = students.reduce((sum, s) => sum + s.marks, 0);
+  const avg = total / students.length;
+  document.getElementById("output").textContent = `Average Marks = ${avg.toFixed(2)}`;
+}
+
+// 3. Filter High Scorers
+function filterHighScorers() {
+  const students = [
+    new Student("A", 20, 95),
+    new Student("B", 21, 89),
+    new Student("C", 22, 91)
+  ];
+  const highScorers = students.filter(s => s.marks > 90);
+  let res = "High Scorers (>90):\n";
+  highScorers.forEach(s => res += `${s.name} - ${s.marks}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 4. Find the Topper
+function findTopper() {
+  const students = [
+    new Student("A", 20, 85),
+    new Student("B", 21, 96),
+    new Student("C", 22, 91)
+  ];
+  const topper = students.reduce((max, s) => (s.marks > max.marks ? s : max));
+  document.getElementById("output").textContent = `Topper: ${topper.name} with ${topper.marks} marks`;
+}
+
+// 5. Add New Property Dynamically
+class Employee {
+  constructor(id, name, salary) {
+    this.id = id;
+    this.name = name;
+    this.salary = salary;
+  }
+}
+
+function addNewProperty() {
+  const employees = [
+    new Employee(1, "John", 40000),
+    new Employee(2, "Jane", 45000),
+    new Employee(3, "Jim", 50000)
+  ];
+  employees.forEach(emp => emp.department = "IT");
+  let res = "Employees with Department:\n";
+  employees.forEach(e => res += `${e.name} (${e.department}) - ₹${e.salary}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 6. Sorting Objects
+class Book {
+  constructor(title, price) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+function sortBooks() {
+  const books = [
+    new Book("A", 300),
+    new Book("B", 150),
+    new Book("C", 250)
+  ];
+  books.sort((a, b) => a.price - b.price);
+  let res = "Books Sorted by Price:\n";
+  books.forEach(b => res += `${b.title} - ₹${b.price}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 7. Class with Method
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+  getDiscountedPrice(rate) {
+    return this.price - (this.price * rate / 100);
+  }
+}
+
+function productDiscount() {
+  const products = [
+    new Product("Laptop", 50000),
+    new Product("Phone", 30000),
+    new Product("Tablet", 20000)
+  ];
+  let res = "Discounted Prices (10% off):\n";
+  products.forEach(p => res += `${p.name} - ₹${p.getDiscountedPrice(10)}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 8. Update Specific Object
+function updateBookPrice() {
+  const books = [
+    new Book("JS Guide", 500),
+    new Book("HTML Mastery", 300),
+    new Book("CSS Design", 400)
+  ];
+  const titleToUpdate = "HTML Mastery";
+  const found = books.find(b => b.title === titleToUpdate);
+  if (found) found.price = 350;
+  let res = "Updated Book Prices:\n";
+  books.forEach(b => res += `${b.title} - ₹${b.price}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 9. Remove an Object (Lowest Marks)
+function removeLowestStudent() {
+  const students = [
+    new Student("A", 20, 75),
+    new Student("B", 21, 95),
+    new Student("C", 22, 85)
+  ];
+  const minMarks = Math.min(...students.map(s => s.marks));
+  const filtered = students.filter(s => s.marks !== minMarks);
+  let res = "After Removing Lowest:\n";
+  filtered.forEach(s => res += `${s.name} - ${s.marks}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 10. Display Custom Formatted Output
+class Car {
+  constructor(brand, model, price) {
+    this.brand = brand;
+    this.model = model;
+    this.price = price;
+  }
+}
+
+function displayCars() {
+  const cars = [
+    new Car("Toyota", "Innova", 20),
+    new Car("Hyundai", "Creta", 15),
+    new Car("Kia", "Seltos", 18)
+  ];
+  let res = "";
+  cars.forEach(c => res += `The ${c.brand} ${c.model} costs ₹${c.price} lakh.\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 11. Use of Array.from()
+function arrayFromStudents() {
+  const raw = [
+    ["A", 20, 85],
+    ["B", 21, 90],
+    ["C", 22, 95]
+  ];
+  const students = Array.from(raw, r => new Student(r[0], r[1], r[2]));
+  let res = "Converted using Array.from():\n";
+  students.forEach(s => res += `${s.name} - ${s.marks}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// 12. Index Assignment (No Push)
+function indexAssignment() {
+  const employees = [];
+  employees[0] = new Employee(1, "John", 50000);
+  employees[1] = new Employee(2, "Jane", 55000);
+  employees[2] = new Employee(3, "Jim", 60000);
+  let res = "Employees (Index Assignment):\n";
+  employees.forEach(e => res += `${e.id}. ${e.name} - ₹${e.salary}\n`);
+  document.getElementById("output").textContent = res;
+}
+
+// Challenge: Library Class
+class Library {
+  constructor() {
+    this.books = [];
+  }
+  addBook(book) { this.books.push(book); }
+  displayBooks() {
+    return this.books.map(b => `${b.title} - ₹${b.price}`).join("\n");
+  }
+  findBook(title) {
+    return this.books.find(b => b.title === title);
+  }
+}
+
+function challengeLibrary() {
+  const lib = new Library();
+  lib.addBook(new Book("JavaScript", 500));
+  lib.addBook(new Book("HTML", 300));
+  lib.addBook(new Book("CSS", 400));
+  let res = "All Books:\n" + lib.displayBooks();
+  res += "\n\nFinding 'HTML':\n";
+  const found = lib.findBook("HTML");
+  res += found ? `${found.title} - ₹${found.price}` : "Not Found";
+  document.getElementById("output").textContent = res;
+}
+</script>
+
+</body>
+</html>
