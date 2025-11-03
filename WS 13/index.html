@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>File Handling Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container">
+    <h1 class="my-4 text-center">File Handling Solutions</h1>
+    <div class="row">
+
+        <!-- Employee Login -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">Employee Login</div>
+                <div class="card-body">
+                    <form id="empForm">
+                        <input class="form-control mb-2" type="text" placeholder="EmpID" id="empID">
+                        <input class="form-control mb-2" type="date" id="date">
+                        <input class="form-control mb-2" type="time" id="timeIn">
+                        <input class="form-control mb-2" type="time" id="timeOut">
+                        <button class="btn btn-primary w-100 mb-2" type="submit">Log Employee</button>
+                    </form>
+                    <form id="countForm">
+                        <input class="form-control mb-2" type="date" id="countDate">
+                        <button class="btn btn-secondary w-100" type="submit">Count After 10AM</button>
+                    </form>
+                    <div id="empOutput"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Retail Store -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">Retail Store Stock</div>
+                <div class="card-body">
+                    <form id="prodForm">
+                        <input class="form-control mb-2" type="text" placeholder="ProdID" id="prodID">
+                        <input class="form-control mb-2" type="text" placeholder="Description" id="prodDesc">
+                        <input class="form-control mb-2" type="number" placeholder="Price" id="prodPrice">
+                        <input class="form-control mb-2" type="number" placeholder="Stock" id="prodStock">
+                        <button class="btn btn-primary w-100 mb-2" type="submit">Add Product</button>
+                    </form>
+                    <button class="btn btn-secondary w-100 mb-2" id="bufferBtn">Buffer Stock Products</button>
+                    <form id="updateForm" class="mt-2">
+                        <input class="form-control mb-2" type="text" placeholder="ProdID to Update" id="updateID">
+                        <input class="form-control mb-2" type="number" placeholder="New Stock" id="newStock">
+                        <button class="btn btn-warning w-100" type="submit">Update Stock</button>
+                    </form>
+                    <div id="prodOutput"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Delivery -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">Food Delivery Orders</div>
+                <div class="card-body">
+                    <form id="orderForm">
+                        <input class="form-control mb-2" type="text" placeholder="OrderID" id="orderID">
+                        <input class="form-control mb-2" type="text" placeholder="Item" id="orderItem">
+                        <input class="form-control mb-2" type="number" placeholder="Quantity" id="orderQty">
+                        <input class="form-control mb-2" type="number" placeholder="Price per Unit" id="orderPrice">
+                        <button class="btn btn-primary w-100 mb-2" type="submit">Add Order</button>
+                    </form>
+                    <button class="btn btn-success w-100" id="salesBtn">Print Total Sales</button>
+                    <div id="foodOutput"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Example JS for Electron or Express integration -->
+<script>
+// For demonstration; actual code should use AJAX or Electron IPC to communicate with Node
+document.getElementById('empForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Use fetch/AJAX to call "/logEmployee" endpoint or Electron API
+};
+
+document.getElementById('countForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Call Node function, display number of late employees for given date
+};
+
+document.getElementById('prodForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Add product via Node API
+};
+
+document.getElementById('bufferBtn').onclick = function() {
+    // Show products below buffer stock
+};
+
+document.getElementById('updateForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Update product stock via Node API
+};
+
+document.getElementById('orderForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Add food order via Node API
+};
+
+document.getElementById('salesBtn').onclick = function() {
+    // Print total sales in the UI
+};
+</script>
+</body>
+</html>
