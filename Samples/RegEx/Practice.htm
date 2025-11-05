@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>RegEx Practice</title>
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+                background: #f4f6f8;
+                color: #333;
+                padding: 20px;
+            }
+
+            h2{
+                color: #0056b3;
+            }
+
+            .task{
+                background: #fff;
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            input[type="text"], textarea{
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button{
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 14px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover{
+                background-color: #0056b3;
+            }
+
+            .output{
+                margin-top: 10px;
+                font-weight: bold;
+                color: #1a1a1a;
+                background: #eef4ff;
+                padding: 8px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Pattern Matching Using RegEx</h1>
+
+        <!-- Question 1 -->
+         <div class="task">
+            <h2>Validate Class Roll Number</h2>
+            <p>Valid ranges: <b>25MX101-24MX130</b> or <b>25MX201-25MX232</b></p>
+            <input type="text" id="rollInput" placeholder="Enter roll number (e.g., 25MX125)">
+            <button onclick="validateToll()">Verify</button>
+            <div id="rollOutput" class="output"></div>
+         </div>
+
+        <!-- Question 2 -->
+         <div class="task">
+            <h2>Words with At Least One Vowel</h2>
+            <textarea id="vowelText" placeholder="Enter a sentence..."></textarea>
+            <button onclick="findVowels()">Match Words</button>
+            <div id="vowelOutput" class="output"></div>
+         </div>
+
+         <!-- Question 3 -->
+          <div class="task">
+            <h2>Extact Date Strings (DD-MMM-YYYY)</h2>
+            <textarea id="dateText" placeholder="Enter text containing dates (e.g., 11-NOV-2025)..."></textarea>
+            <button onclick="extractDates()">Extract Dates</button>
+            <div id="dateOutput" class="output"></div>
+          </div>
+
+        <!-- Question 4 -->
+        <div class="task">
+            <h2>Prefix Binary Numbers </h2>
+        </div>
+    </body>
+</html>

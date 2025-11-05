@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div class="box">Box 1</div>
+  <div class="box">Box 2</div>
+  <button onclick="changeColor()">Change Color</button>
+  <script>
+    function changeColor() {
+      let boxes = document.getElementsByClassName("box");
+      for (let i = 0; i < boxes.length; i++) {
+        boxes[i].style.background = "lightblue";
+      }                   }
+  </script>          </body>            </html>
