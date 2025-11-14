@@ -1,0 +1,21 @@
+<%- include("partials/head") %>
+
+<h2>Day Scholar Students</h2>
+
+<table>
+  <tr>
+    <th>Roll</th>
+    <th>Name</th>
+    <th>Skills</th>
+  </tr>
+
+  <% students.forEach(s => { %>
+  <tr>
+    <td><%= s.rollNumber %></td>
+    <td><%= s.name %></td>
+    <td><%= s.skills.join(", ") %></td>
+  </tr>
+  <% }) %>
+</table>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,13 @@
+<%- include("partials/head") %>
+
+<h2>Search to Update</h2>
+
+<form method="POST" action="/updateStudent/search">
+  <label
+    >Roll Number:
+    <input name="rollNumber" required />
+  </label>
+  <button type="submit">Search</button>
+</form>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,34 @@
+<%- include("partials/head") %>
+
+<h2>Update Student: <%= student.rollNumber %></h2>
+
+<form method="POST" action="/updateStudent">
+  <input type="hidden" name="rollNumber" value="<%= student.rollNumber %>" />
+
+  <label
+    >Name:
+    <input name="name" required value="<%= student.name %>" />
+  </label>
+
+  <label
+    >Guardian Phone:
+    <input name="guardianPhone" value="<%= student.guardianPhone || '' %>" />
+  </label>
+
+  <fieldset>
+    <legend>Skills</legend>
+
+    <% const SK =
+    ["dance","drawing","painting","singing","storyWriting","chess","cricket","soccer","orchestra"];
+    %> <% SK.forEach(s => { %>
+    <label>
+      <input type="checkbox" name="skills" value="<%= s %>" <%=
+      student.skills.includes(s) ? "checked" : "" %> > <%= s %>
+    </label>
+    <% }) %>
+  </fieldset>
+
+  <button type="submit">Update</button>
+</form>
+
+<%- include("partials/footer") %>

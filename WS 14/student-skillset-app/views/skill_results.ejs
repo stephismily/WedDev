@@ -1,0 +1,24 @@
+<%- include("partials/head") %>
+
+<h2>Results for "<%= skillPattern %>"</h2>
+
+<% if (students.length === 0) { %>
+<p>No matching students.</p>
+<% } else { %>
+<table>
+  <tr>
+    <th>Roll</th>
+    <th>Name</th>
+    <th>Guardian</th>
+    <th>Skills</th>
+  </tr>
+  <% students.forEach(st => { %>
+  <tr>
+    <td><%= st.rollNumber %></td>
+    <td><%= st.name %></td>
+    <td><%= st.guardianPhone || \"Day Scholar\" %></td>
+    <td><%= st.skills.join(\", \") %></td>
+  </tr>
+  <% }) %>
+</table>
+<% } %> <%- include("partials/footer") %>

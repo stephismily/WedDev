@@ -1,0 +1,12 @@
+<%- include("partials/head") %>
+
+<h2>Delete Student</h2>
+<form method="POST" action="/deleteStudent">
+  <label
+    >Roll Number:
+    <input name="rollNumber" required />
+  </label>
+  <button type="submit">Delete</button>
+</form>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,17 @@
+<%- include("partials/head") %>
+
+<h2>Search by Skill (Pattern)</h2>
+
+<form method="POST" action="/skillStudent">
+  <label
+    >Skill Pattern:
+    <input
+      name="skillPattern"
+      required
+      pattern="[A-Za-z0-9^$.+*?()|\\-]{1,40}"
+    />
+  </label>
+  <button type="submit">Search</button>
+</form>
+
+<%- include("partials/footer") %>

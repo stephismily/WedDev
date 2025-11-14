@@ -1,0 +1,14 @@
+<%- include("partials/head") %>
+
+<h2>Student Details</h2>
+
+<% if (!student) { %>
+<p>No student found.</p>
+<% } else { %>
+<ul>
+  <li><b>Roll:</b> <%= student.rollNumber %></li>
+  <li><b>Name:</b> <%= student.name %></li>
+  <li><b>Guardian Phone:</b> <%= student.guardianPhone || "Day Scholar" %></li>
+  <li><b>Skills:</b> <%= student.skills.join(", ") %></li>
+</ul>
+<% } %> <%- include("partials/footer") %>

@@ -1,0 +1,44 @@
+<%- include("partials/head") %>
+
+<h2>Add Student</h2>
+
+<form method="POST" action="/addStudent" id="addForm">
+  <label
+    >Roll Number:
+    <input name="rollNumber" required pattern="[A-Za-z0-9_-]{1,20}" />
+  </label>
+
+  <label
+    >Name:
+    <input name="name" required pattern="[A-Za-z .'-]{2,50}" />
+  </label>
+
+  <label
+    >Guardian Phone (optional):
+    <input name="guardianPhone" pattern="^[6-9][0-9]{9}$" />
+  </label>
+
+  <fieldset>
+    <legend>Skills</legend>
+    <% const SKL =
+    ["dance","drawing","painting","singing","storyWriting","chess","cricket","soccer","orchestra"];
+    %> <% SKL.forEach(s => { %>
+    <label
+      ><input type="checkbox" name="skills" value="<%= s %>" /> <%= s %></label
+    >
+    <% }) %>
+  </fieldset>
+
+  <button type="submit">Add</button>
+</form>
+
+<script>
+  document.getElementById("addForm").addEventListener("submit", (e) => {
+    let chk = document.querySelectorAll("input[type=checkbox]:checked");
+    if (chk.length === 0 && !confirm("No skill selected. Continue?")) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<%- include("partials/footer") %>
